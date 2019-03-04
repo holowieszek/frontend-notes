@@ -5,14 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './angular-material.module';
 import { HeaderComponent } from './header/header.component';
-import { HttpClientModule } from '@angular/common/http';
-import { IdeasComponent } from './ideas/ideas.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NotesListComponent } from './notes/notes-list/notes-list.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    IdeasComponent
+    NotesListComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +22,9 @@ import { IdeasComponent } from './ideas/ideas.component';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
