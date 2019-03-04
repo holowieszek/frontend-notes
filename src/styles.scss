@@ -14,3 +14,7 @@ a {
 ul {
   list-style-type: none;
 }
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
