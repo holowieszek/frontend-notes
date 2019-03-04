@@ -38,7 +38,7 @@ export class AuthService {
   register(data) {
     this.http.post<{ id: string, token: string }>(this.url + '/api/users/register', data)
       .subscribe(result => {
-        return this.authenticate(result);
+        this.authenticate(result);
       }, err => {
         console.log(err.error.errors);
       })
@@ -47,16 +47,7 @@ export class AuthService {
   login(data) {
     this.http.post<{ id: string, token: string }>(this.url + '/api/users/login', data)
       .subscribe(result => {
-        const token = result.token;
-        this.token = token;
-
-        if (token) {
-          this.isAuthenticated = true;
-          this.userId = result.id;
-          this.authStatusListener.next(true);
-          this.saveAuthData(result.token, this.userId);
-          this.router.navigate(['/ideas']);
-        }
+        this.authenticate(result);
       }, err => {
         console.log(err.error.errors);
       })
@@ -120,6 +111,4 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
   }
-
-  
 }
