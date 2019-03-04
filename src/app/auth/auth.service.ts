@@ -84,7 +84,7 @@ export class AuthService {
       this.userId = result.id;
       this.authStatusListener.next(true);
       this.saveAuthData(this.token, this.userId);
-      this.router.navigate(['/']);
+      this.router.navigate(['/notes']);
     }
   }
 
