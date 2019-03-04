@@ -2,10 +2,16 @@
   <span>Notes</span>
   <span class="fill-remaining-space"></span>
   <ul>
-    <li>
+    <li *ngIf="userIsAuthenticated">
+      <a routerLink="/ideas">Ideas</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a (click)="onLogout()">Logout</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
       <a routerLink="/signin">Login</a>
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a routerLink="/signup">Register</a>
     </li>
   </ul>
