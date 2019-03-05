@@ -44,4 +44,13 @@ export class NotesService {
   getNotesUpdateListener() {
     return this.notesUpdated.asObservable();
   }
+
+  createNote(data) {
+    this.http.post(this.url + '/api/notes/create', data)
+      .subscribe(result => {
+        this.router.navigate(['/notes']);
+      }, err => {
+        console.log(err)
+      })
+  }
 }
