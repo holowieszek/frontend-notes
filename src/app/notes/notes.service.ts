@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Note } from './note.model';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class NotesService {
   private readonly url = environment.baseUrl;
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly router: Router
   ) {}
 
   getNotes() {
@@ -41,5 +43,14 @@ export class NotesService {
 
   getNotesUpdateListener() {
     return this.notesUpdated.asObservable();
+  }
+
+  createNote(data) {
+    this.http.post(this.url + '/api/notes/create', data)
+      .subscribe(result => {
+        this.router.navigate(['/notes']);
+      }, err => {
+        console.log(err)
+      })
   }
 }

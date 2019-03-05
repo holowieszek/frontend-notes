@@ -1,0 +1,23 @@
+<mat-card>
+  <form [formGroup]="form" (submit)="createNote()">
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Title">
+        <mat-error *ngIf="!!f.title.invalid">Title is invalid!</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Description"></textarea>
+        <mat-error *ngIf="!!f.description.invalid">Description is invalid!</mat-error>
+    </mat-form-field>
+    <span class="fill-space"></span>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit">Save Note</button>
+  </form>
+</mat-card>

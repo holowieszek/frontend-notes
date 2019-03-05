@@ -1,3 +1,10 @@
-<mat-list dense>
-  <mat-list-item *ngFor="let note of notes"> {{ note.title }} </mat-list-item>
-</mat-list>
+<div class="notes-wrapper">
+  <!-- <span class="fill-remaining-space"></span> -->
+  <a
+  mat-flat-button
+  color="warn"
+  [routerLink]="['/notes/create']">Create Note</a>
+  <mat-list dense>
+    <mat-list-item *ngFor="let note of notes"> {{ note.title }} </mat-list-item>
+  </mat-list>
+</div>
